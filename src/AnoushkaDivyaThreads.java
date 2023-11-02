@@ -15,6 +15,9 @@ import javax.imageio.ImageIO;
 public class AnoushkaDivyaThreads implements Runnable{
     public static double times;
     public int count=0;
+    public int counter=1;
+    public static long startTime;
+    public static long endTime;
 
     public static void main(String args[])
     {
@@ -23,6 +26,7 @@ public class AnoushkaDivyaThreads implements Runnable{
         AnoushkaDivyaThreads aa = new AnoushkaDivyaThreads();
         int count = 0;
 
+        startTime = System.currentTimeMillis();
 
        // timeBest.start();
 
@@ -56,6 +60,13 @@ public class AnoushkaDivyaThreads implements Runnable{
             NumberFormat num = NumberFormat.getInstance();
             System.out.println(Thread.currentThread().getName()+":"+ num.format(count));
             writer.close();
+            endTime= System.currentTimeMillis();
+            counter++;
+            if(counter == 100)
+            {
+                System.out.println("Time Taken is "+(endTime - startTime)/1000+" secs.");
+            }
+
         } catch (IOException e)
         {
             System.out.println("An error occurred.");
