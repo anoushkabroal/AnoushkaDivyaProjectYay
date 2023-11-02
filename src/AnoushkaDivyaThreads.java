@@ -9,13 +9,16 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.awt.image.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.imageio.ImageIO;
 
 
 public class AnoushkaDivyaThreads implements Runnable{
     public static double times;
-    public int count=0;
+    //public long count=0;
     public int counter=1;
+
+    public AtomicInteger count = new AtomicInteger(0);
     public static long startTime;
     public static long endTime;
 
@@ -24,7 +27,8 @@ public class AnoushkaDivyaThreads implements Runnable{
         // create an object of Runnable target
 
         AnoushkaDivyaThreads aa = new AnoushkaDivyaThreads();
-        int count = 0;
+        //int count = 0;
+
 
         startTime = System.currentTimeMillis();
 
@@ -55,8 +59,8 @@ public class AnoushkaDivyaThreads implements Runnable{
             {
                 writer.write(Thread.currentThread().getName()+":"+j+"\n");
                 //System.out.println(Thread.currentThread().getId()+":"+j);
+                count.addAndGet(1);
             }
-            count += 1000000;
             NumberFormat num = NumberFormat.getInstance();
             System.out.println(Thread.currentThread().getName()+":"+ num.format(count));
             writer.close();
